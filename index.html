@@ -1,22 +1,158 @@
 <!DOCTYPE html>
 <html>
+
   <head>
+
     <meta charset="utf-8">
-    <title>Restate</title>
+    <title>Restate - Real-Time Real Estate Analytics</title>
+
+    <link
+      href="">
+    <link href="assets/css/styles.css" rel="stylesheet">
+
   </head>
+
   <body>
-    <div class='main-content'>
 
-      <div class='city-graph'>
+    <div class="main-content">
 
-        <div class='city-filter'>
+      <div class="select-area page">
+
+        <div class="overlay"></div>
+
+        <div id='zipInput' class="enter-zipcode">
           <form>
-            <!-- Dropdown menu for city here -->
+
+            <label>
+              <input
+              type="text"
+              name="zipcode"
+              placeholder="Enter a zipcode to get started..."
+              >
+            </label>
+
           </form>
         </div>
-        
+
       </div>
 
+      <div class="all-analytics page">
+        <div class="filters">
+          <form>
+
+            <div class="filter-criteria">
+              <span>Analytics</span>
+              <label>
+                <input
+                  type="checkbox"
+                  name="analytics"
+                  value="mediannewlist">
+                Median Price of New Listings
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="analytics"
+                  value="medianList">
+                Median Price of All Listings
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="analytics"
+                  value="medianpending">
+                Median Price of Pending Listings
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="analytics"
+                  value="newlistcount">
+                Count of New Listings
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="analytics"
+                  value="soldcount">
+                Count of Sold Listings
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="analytics"
+                  value="medianlistpersqft">
+                Median List Price per Square Foot
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="analytics"
+                  value="mediansoldpersqft">
+                Median sold Price per Square Foot
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="analytics"
+                  value="mediansoldperlistpercent">
+                Average sold Price versus List Price Ratio
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="analytics"
+                  value="avgdom">
+                Average Days on the Market
+              </label>
+            </div>
+
+            <button>Clear Filters</button>
+
+          </form>
+
+        </div>
+
+        <div id='graph' class="analytics-graph">
+
+        </div>
+      </div>
+
+      <div class="error page">
+        <h3>This service is currently unavailable.</h3>
+      <div>
+
     </div>
+
+    <script src="assets/javascript/script.js"></script>
+    <script>
+      let allAnalytics = document.querySelector('#allAnalytics');
+      let analyticsGraph = document.querySelector('#graph');
+      let zipInput = document.querySelector('#zipInput');
+
+      function getZipcodeInfo() {
+        let zipcode = zipInput.value;
+
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://search.onboard-apis.com/propertyapi/v1.0.0/salestrend/snapshot?geoid='+zipcode+'&interval=monthly&startyear=2017&endyear=2017&startmonth=january&endmonth=december');
+
+        xhr.onload = function() {
+          if (this.state === 200 && zipcode !== ''){
+            console.log(this.responseText);
+          }
+        }
+
+        xhr.send();
+      }
+    </script>
   </body>
+
 </html>
