@@ -12,147 +12,102 @@
 
   </head>
 
+  <header id="header" class="header">
+    <div class="header-text">
+      <h2>Restate</h2>
+      <h3>Real-Time Real Estate Analytics</h3>
+    </div>
+
+    <span id='newSearch'>Create a New Search</span>
+  </header>
+
   <body>
 
     <div class="main-content">
 
-      <div class="select-area page">
+      <div id="selectArea" class="select-area page">
 
-        <div class="overlay"></div>
+          <div class="enter-zipcode">
 
-        <div id='zipInput' class="enter-zipcode">
-          <form>
+            <form>
+              <h2>Restate</h2>
+              <h3>Real-Time Real Estate Analytics</h3>
 
-            <label>
-              <input
-              type="text"
-              name="zipcode"
-              placeholder="Enter a zipcode to get started..."
-              >
-            </label>
+              <label>
+                <input
+                id="zipInput"
+                class="zip-input"
+                type="text"
+                name="zipcode"
+                placeholder="Enter a zipcode to get started..."
+                >
+              </label>
 
-          </form>
-        </div>
+              <button id='zipSubmit'>Search</button>
+            </form>
+          </div>
 
       </div>
 
-      <div class="all-analytics page">
-        <div class="filters">
-          <form>
+      <div id="allAnalytics" class="all-analytics page">
+        <div class="filters-container">
+          <div class="filters">
+            <form>
 
-            <div class="filter-criteria">
-              <span>Analytics</span>
-              <label>
-                <input
+              <div class="filter-criteria">
+                <span>Analytics</span>
+                <label>
+                  <input
                   type="checkbox"
                   name="analytics"
-                  value="mediannewlist">
-                Median Price of New Listings
-              </label>
+                  value="homesalecount">
+                  Number of Sales
+                </label>
 
-              <label>
-                <input
+                <label>
+                  <input
                   type="checkbox"
                   name="analytics"
-                  value="medianList">
-                Median Price of All Listings
-              </label>
+                  value="avgsaleprice">
+                  Average Sale Price
+                </label>
 
-              <label>
-                <input
+                <label>
+                  <input
                   type="checkbox"
                   name="analytics"
-                  value="medianpending">
-                Median Price of Pending Listings
-              </label>
+                  value="medsaleprice">
+                  Median Sale Price
+                </label>
 
-              <label>
-                <input
-                  type="checkbox"
-                  name="analytics"
-                  value="newlistcount">
-                Count of New Listings
-              </label>
+                <label>
+                  <input
+                    class="year-input"
+                    type="text"
+                    name="year"
+                    placeholder="Enter a year after 2010..."
+                  />
+                </label>
+              </div>
 
-              <label>
-                <input
-                  type="checkbox"
-                  name="analytics"
-                  value="soldcount">
-                Count of Sold Listings
-              </label>
+              <button>Clear Filters</button>
 
-              <label>
-                <input
-                  type="checkbox"
-                  name="analytics"
-                  value="medianlistpersqft">
-                Median List Price per Square Foot
-              </label>
+            </form>
 
-              <label>
-                <input
-                  type="checkbox"
-                  name="analytics"
-                  value="mediansoldpersqft">
-                Median sold Price per Square Foot
-              </label>
+          </div>
 
-              <label>
-                <input
-                  type="checkbox"
-                  name="analytics"
-                  value="mediansoldperlistpercent">
-                Average sold Price versus List Price Ratio
-              </label>
-
-              <label>
-                <input
-                  type="checkbox"
-                  name="analytics"
-                  value="avgdom">
-                Average Days on the Market
-              </label>
-            </div>
-
-            <button>Clear Filters</button>
-
-          </form>
-
-        </div>
-
-        <div id='graph' class="analytics-graph">
-
+          <div id='graph' class="analytics-graph">
+            <canvas id='analyticsLineChart' height='500' width='800'></canvas>
+          </div>
         </div>
       </div>
-
-      <div class="error page">
-        <h3>This service is currently unavailable.</h3>
-      <div>
 
     </div>
 
-    <script src="assets/javascript/script.js"></script>
-    <script>
-      let allAnalytics = document.querySelector('#allAnalytics');
-      let analyticsGraph = document.querySelector('#graph');
-      let zipInput = document.querySelector('#zipInput');
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+    <script src="assets/javascript/chart.js"></script>
+    <script src="assets/javascript/bundle.js"></script>
 
-      function getZipcodeInfo() {
-        let zipcode = zipInput.value;
-
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://search.onboard-apis.com/propertyapi/v1.0.0/salestrend/snapshot?geoid='+zipcode+'&interval=monthly&startyear=2017&endyear=2017&startmonth=january&endmonth=december');
-
-        xhr.onload = function() {
-          if (this.state === 200 && zipcode !== ''){
-            console.log(this.responseText);
-          }
-        }
-
-        xhr.send();
-      }
-    </script>
   </body>
 
 </html>

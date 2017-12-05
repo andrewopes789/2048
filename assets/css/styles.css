@@ -1,0 +1,210 @@
+html {
+  background-color: #696969;
+}
+
+.analytics-graph {
+  background-color: white;
+  border-radius: 10px;
+  opacity: 0.9;
+  padding: 10px;
+}
+
+.all-analytics {
+  align-content: center;
+  align-items: center;
+  color: white;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.enter-zipcode {
+  border: 1px solid white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 20vh 10vw;
+  width: 45vw;
+}
+
+.enter-zipcode button {
+  border-radius: 8px;
+  color: gray;
+  font-family: Palantino;
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 4vh;
+  padding: 4px 15px;
+}
+
+.enter-zipcode button:hover {
+  cursor: pointer;
+}
+
+.enter-zipcode form {
+  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.enter-zipcode h2 {
+  align-content: center;
+  align-items: center;
+  color: white;
+  display: block;
+  font-family: Palantino;
+  font-size: 150px;
+  font-weight: 100;
+  margin: 0;
+}
+
+.enter-zipcode h3 {
+  color: white;
+  display: block;
+  font-family: Palantino;
+  font-size: 33px;
+  font-style: italic;
+  font-weight: 100;
+  margin-top: 0;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.enter-zipcode input {
+  border-radius: 10px;
+  font-family: Palantino;
+  font-size: 16px;
+  padding: 12px 6px;
+  width: 97.5%;
+}
+
+.error {
+  display: none;
+}
+
+.filter-criteria {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-criteria label {
+  padding-bottom: 6px;
+  padding-top: 5px;
+}
+
+.filter-criteria span {
+  font-size: 20px;
+  font-weight: 100;
+  padding-bottom: 6px;
+}
+
+.filters {
+  align-content: center;
+  align-items: center;
+  background-color: grey;
+  border: 1px solid white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 5vw;
+  padding: 2%;
+  width: 300px;
+}
+
+.filters button {
+  background-color: gray;
+  border-radius: 5px;
+  color: white;
+  font-family: Palantino;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: lighter;
+  margin: 10px auto auto auto;
+  padding: 5px 30px;
+}
+
+.filters-container {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin: 10vh auto auto auto;
+}
+
+.header {
+  border-bottom: 0.1px solid white;
+  flex-direction: row;
+  width: 100%;
+}
+
+.header span {
+  color: white;
+  display: block;
+  font-family: Palantino;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 100;
+  height: 100%;
+  margin: auto 2vw auto auto;
+  text-align: center;
+}
+
+.header span:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  margin: 2vh 2vw;
+}
+
+.header-text h2 {
+  color: white;
+  display: block;
+  font-family: Palantino;
+  font-size: 80px;
+  font-weight: 100;
+  margin: 0;
+}
+
+.header-text h3 {
+  color: white;
+  display: block;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 100;
+  margin: 0 0 2vh 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.select-area {
+  align-content: center;
+  align-items: center;
+  background-color: #696969;
+  display: flex;  
+  flex-direction: row;
+  height: 100vh;
+  justify-content: center;
+  padding: auto;
+  width: 100vw;
+}
+
+.year-input {
+  border-radius: 5px;
+  font-family: Palantino;
+  font-size: 12px;
+  font-style: italic;
+  margin: auto;
+  padding: 7px 5px;
+  width: 90%;
+}
+
+.zip-input {
+  font-style: italic;
+}

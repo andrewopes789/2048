@@ -28,9 +28,9 @@ plugins = plugins.concat(
 
 module.exports = {
   context: __dirname,
-  entry: './frontend/restate.jsx',
+  entry: './assets/javascript/restate.js',
   output: {
-    path: path.join(__dirname, 'app', 'assets', 'javascripts'),
+    path: path.join(__dirname, 'assets', 'javascript'),
     filename: 'bundle.js'
   },
   resolve: {

@@ -43,7 +43,7 @@ $(function () {
     e.preventDefault();
     window.location.hash = "#";
   });
-  // 
+  //
   // let selectArea = $('.select-area');
   //
   // selectArea.on('click', function (e) {
