@@ -33,6 +33,10 @@ In addition, this project will include:
 
 ### Wireframes
 
+![Initial modal](https://github.com/andrewopes789/restate/blob/master/wireframes/initial-modal.png)
+
+![Graph render](https://github.com/andrewopes789/restate/blob/master/wireframes/graph-render.png)
+
 ### Architecture and Technologies
 
 This project will be implemented with the following technologies:
