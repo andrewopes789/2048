@@ -70,7 +70,15 @@
 "use strict";
 
 
-var _fetch_data = __webpack_require__(1);
+var _fetch_data = __webpack_require__(3);
+
+var _jquery = __webpack_require__(1);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _chart = __webpack_require__(2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var zipInput = document.getElementById('zipInput');
 var zipSubmit = document.getElementById('zipSubmit');
@@ -79,17 +87,33 @@ var selectArea = document.getElementById('selectArea');
 var allAnalytics = document.getElementById('allAnalytics');
 var header = document.getElementById('header');
 
+var numOfSales = [];
+var avgSalePrice = [];
+var medSalePrice = [];
+var xAxis = [];
+
 zipSubmit.addEventListener('click', function (e) {
   e.preventDefault();
-
   if (zipInput.value !== '') {
-    var result = (0, _fetch_data.fetchAnalytics)(zipInput.value);
-    console.log('result', result);
-    console.log('result.salestrends', result.salestrends);
-    allAnalytics.style.display = 'flex';
-    selectArea.style.display = 'none';
-    header.style.display = 'flex';
+    (0, _fetch_data.fetchAnalytics)(zipInput.value).then(function (data) {
+      console.log(data.salestrends[0].daterange.start);
+      for (var i = 0; i < data.salestrends.length; i++) {
+        xAxis.push(data.salestrends[i].daterange.start);
+        numOfSales.push(data.salestrends[i].SalesTrend.homesalecount);
+        avgSalePrice.push(data.salestrends[i].SalesTrend.avgsaleprice);
+        medSalePrice.push(data.salestrends[i].SalesTrend.medsaleprice);
+      }
+      console.log(xAxis);
+      console.log(numOfSales);
+      console.log(avgSalePrice);
+      console.log(medSalePrice);
+      (0, _chart.updatePriceChart)(xAxis, avgSalePrice, medSalePrice);
+      (0, _chart.updateCountChart)(xAxis, numOfSales);
+    });
   }
+  allAnalytics.style.display = 'flex';
+  selectArea.style.display = 'none';
+  header.style.display = 'flex';
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -106,47 +130,27 @@ newSearch.addEventListener('click', function (e) {
   header.style.display = 'none';
 });
 
+var newYear = document.getElementById('newYear');
+var yearInput = document.getElementById('yearInput');
+
+newYear.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (zipInput.value !== '' && yearInput.value !== '') {
+    (0, _fetch_data.fetchAnalytics)(zipInput.value, yearInput.value).then(function (data) {
+      for (var i = 0; i < data.salestrends.length; i++) {
+        xAxis.push(data.salestrends[i].daterange.start);
+        numOfSales.push(data.salestrends[i].SalesTrend.homesalecount);
+        avgSalePrice.push(data.salestrends[i].SalesTrend.avgsaleprice);
+        medSalePrice.push(data.salestrends[i].SalesTrend.medsaleprice);
+      }
+      (0, _chart.updatePriceChart)(xAxis, avgSalePrice, medSalePrice);
+      (0, _chart.updateCountChart)(xAxis, numOfSales);
+    });
+  }
+});
+
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.fetchAnalytics = undefined;
-
-var _jquery = __webpack_require__(2);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var salestrends = [];
-
-var fetchAnalytics = exports.fetchAnalytics = function fetchAnalytics(zipCode) {
-  var year = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2017;
-  return _jquery2.default.ajax({
-    method: "GET",
-    url: 'https://search.onboard-apis.com/propertyapi/v1.0.0/salestrend/snapshot?geoid=ZI' + zipCode + '&interval=monthly&startyear=' + year + '&endyear=' + year + '&startmonth=january&endmonth=december',
-    headers: {
-      apikey: 'df2bd3344e508b7456d06799d8e08f44',
-      Accept: 'application/json'
-    },
-    dataType: 'json',
-    success: function success(data) {
-      console.log('from ajax', data);
-      salestrends = data.salestrends;
-      console.log('salestrends', salestrends);
-    },
-    error: 'Unable to fetch data'
-  });
-};
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10404,6 +10408,108 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var pricesChart = document.getElementById('analyticsLineChart');
+var salesCountChart = document.getElementById('salesCountChart');
+
+var updatePriceChart = exports.updatePriceChart = function updatePriceChart(xAxis, avgSalePrice, medSalePrice) {
+    new Chart(pricesChart, {
+        type: 'line',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: 'Average Sale Price',
+                fill: false,
+                data: avgSalePrice,
+                backgroundColor: ['rgba(102, 153, 255, 0.2)'],
+                borderColor: ['rgba(102, 153, 255, 1)'],
+                borderWidth: 2
+            }, {
+                label: 'Median Sale Price',
+                fill: false,
+                data: medSalePrice,
+                backgroundColor: ['rgba(255, 0, 0, 0.2)'],
+                borderColor: ['rgba(255, 0, 0, 1)'],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+};
+
+var updateCountChart = exports.updateCountChart = function updateCountChart(xAxis, numOfSales) {
+    new Chart(salesCountChart, {
+        type: 'line',
+        data: {
+            labels: xAxis,
+            datasets: [{
+                label: 'Number of Sales',
+                fill: false,
+                data: numOfSales,
+                backgroundColor: ['rgba(51, 204, 51, 0.2)'],
+                borderColor: ['rgba(51, 204, 51, 1)'],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchAnalytics = undefined;
+
+var _jquery = __webpack_require__(1);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var fetchAnalytics = exports.fetchAnalytics = function fetchAnalytics(zipCode) {
+  var year = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2017;
+  return _jquery2.default.ajax({
+    method: "GET",
+    url: 'https://search.onboard-apis.com/propertyapi/v1.0.0/salestrend/snapshot?geoid=ZI' + zipCode + '&interval=monthly&startyear=' + year + '&endyear=' + year + '&startmonth=january&endmonth=december',
+    headers: {
+      apikey: 'df2bd3344e508b7456d06799d8e08f44',
+      Accept: 'application/json'
+    }
+  });
+};
 
 /***/ })
 /******/ ]);

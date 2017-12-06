@@ -1,5 +1,4 @@
 import $ from 'jquery';
-let salestrends = [];
 
 export const fetchAnalytics = (zipCode, year=2017) => (
   $.ajax({
@@ -9,13 +8,6 @@ export const fetchAnalytics = (zipCode, year=2017) => (
     headers: {
       apikey: 'df2bd3344e508b7456d06799d8e08f44',
       Accept: 'application/json'
-    },
-    dataType: 'json',
-    success: function (data) {
-      console.log('from ajax', data);
-      salestrends = data.salestrends;
-      console.log('salestrends', salestrends);
-    },
-    error: 'Unable to fetch data'
+    }
   })
 );

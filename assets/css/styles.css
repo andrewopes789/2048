@@ -2,9 +2,10 @@ html {
   background-color: #696969;
 }
 
-.analytics-graph {
+.analytics-line-chart {
   background-color: white;
   border-radius: 10px;
+  margin-bottom: 20px;
   opacity: 0.9;
   padding: 10px;
 }
@@ -100,8 +101,6 @@ html {
 }
 
 .filters {
-  align-content: center;
-  align-items: center;
   background-color: grey;
   border: 1px solid white;
   border-radius: 10px;
@@ -183,11 +182,27 @@ html {
   display: none;
 }
 
+.new-year {
+  color: white;
+  font-family: Palantino;
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.sales-count-chart {
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 20px;
+  opacity: 0.9;
+  padding: 10px;
+}
+
 .select-area {
   align-content: center;
   align-items: center;
   background-color: #696969;
-  display: flex;  
+  display: flex;
   flex-direction: row;
   height: 100vh;
   justify-content: center;
@@ -202,7 +217,7 @@ html {
   font-style: italic;
   margin: auto;
   padding: 7px 5px;
-  width: 90%;
+  width: 80%;
 }
 
 .zip-input {
