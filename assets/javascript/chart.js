@@ -16,7 +16,13 @@ export const updatePriceChart = (xAxis, avgSalePrice, medSalePrice) => {
               borderColor: [
                   'rgba(102, 153, 255, 1)'
               ],
-              borderWidth: 2
+              borderWidth: 2,
+              pointHoverBackgroundColor: [
+                'rgba(0, 0, 204, 0.2)'
+              ],
+              pointHoverBorderColor: [
+                'rgba(0, 0, 204, 1)'
+              ]
           }, {
               label: 'Median Sale Price',
               fill: false,
@@ -27,14 +33,20 @@ export const updatePriceChart = (xAxis, avgSalePrice, medSalePrice) => {
               borderColor: [
                   'rgba(255, 0, 0, 1)'
               ],
-              borderWidth: 2
+              borderWidth: 2,
+              pointHoverBackgroundColor: [
+                'rgba(128, 0, 0, 0.2)'
+              ],
+              pointHoverBorderColor: [
+                'rgba(128, 0, 0, 1)'
+              ]
           }]
       },
       options: {
           scales: {
               yAxes: [{
                   ticks: {
-                      beginAtZero:true
+                      beginAtZero:false
                   }
               }]
           }
@@ -57,14 +69,20 @@ export const updateCountChart = (xAxis, numOfSales) => {
               borderColor: [
                   'rgba(51, 204, 51, 1)'
               ],
-              borderWidth: 2
+              borderWidth: 2,
+              pointHoverBackgroundColor: [
+                'rgba(51, 153, 102, 0.2)'
+              ],
+              pointHoverBorderColor: [
+                'rgba(51, 153, 102, 1)'
+              ]
           }]
       },
       options: {
           scales: {
               yAxes: [{
                   ticks: {
-                      beginAtZero:true
+                      beginAtZero:false
                   }
               }]
           }

@@ -18,7 +18,7 @@
       <h3>Real-Time Real Estate Analytics</h3>
     </div>
 
-    <span id='newSearch'>Create a New Search</span>
+    <span id='newSearch'>Search a New Area</span>
   </header>
 
   <body>
@@ -45,61 +45,62 @@
 
               <button id='zipSubmit'>Search</button>
             </form>
+
+            <span id='zipError' class='zip-error'></span>
           </div>
 
       </div>
 
       <div id="allAnalytics" class="all-analytics page">
-        <div class="filters-container">
+        <div class="analytics-container">
           <div class="filters">
             <form>
 
               <div class="filter-criteria">
-                <span>Analytics</span>
-                <label>
-                  <input
-                  type="checkbox"
-                  name="analytics"
-                  value="homesalecount">
-                  Number of Sales
-                </label>
+                <span id='analytics-identifier'></span>
+                <div class='checkbox-container'>
 
-                <label>
-                  <input
-                  type="checkbox"
-                  name="analytics"
-                  value="avgsaleprice">
-                  Average Sale Price
-                </label>
+                  <label>
+                    <input
+                    id='cbAvgSalePrice'
+                    type="checkbox"
+                    name="analytics"
+                    value="avgsaleprice"
+                    >
+                    Average Sale Price
+                  </label>
 
-                <label>
-                  <input
-                  type="checkbox"
-                  name="analytics"
-                  value="medsaleprice">
-                  Median Sale Price
-                </label>
+                  <label>
+                    <input
+                    id='cbMedSalePrice'
+                    type="checkbox"
+                    name="analytics"
+                    value="medsaleprice"
+                    >
+                    Median Sale Price
+                  </label>
 
-                <label>
-                  <div class='new-year'>Interested in data from another year?</div>
+                </div>
+
+                <label class='new-year-container'>
                   <input
                     id='yearInput'
                     class="year-input"
                     type="text"
                     name="year"
-                    placeholder="Enter a year after 2010..."
+                    placeholder="Interested in data from another year? Enter a year after 2011..."
                   />
                 </label>
+                <button id='newYear'>Visualize</button>
               </div>
-              <button id='newYear'>Visualize</button>
 
             </form>
 
           </div>
 
           <div id='graph' class="analytics-graph">
-            <canvas class='analytics-line-chart' id='analyticsLineChart' height='500' width='800'></canvas>
-            <canvas class='sales-count-chart' id='salesCountChart' height='200' width='780'></canvas>
+            <canvas class='analytics-line-chart' id='analyticsLineChart'></canvas>
+            <canvas class='sales-count-chart' id='salesCountChart'></canvas>
           </div>
         </div>
       </div>
