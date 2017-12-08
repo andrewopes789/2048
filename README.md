@@ -2,10 +2,10 @@
 
 ### Background and Overview
 
-Restate is a general guide for everyone from first-time homebuyers to seasoned real estate investors, to gain a sense of the real estate 
-market in the areas they are interested in purchasing a property. 
+Restate is a general guide for everyone from first-time homebuyers to seasoned real estate investors, to gain a sense of the real estate
+market in the areas they are interested in purchasing a property.
 
-Users enter an initial zip code for which they would like market information, and then for the selected area, the application will map the 
+Users enter an initial zip code for which they would like market information, and then for the selected area, the application will map the
 following analytics versus time:
 
 * Average Price of All Listings
@@ -29,7 +29,7 @@ In addition, this project will include:
 
 ![Initial modal](https://github.com/andrewopes789/restate/blob/master/wireframes/initial-modal.png)
 
-![Graph render](https://github.com/andrewopes789/restate/blob/master/wireframes/graph-render.png)
+![Graph render](https://github.com/andrewopes789/restate/blob/master/wireframes/main-page-render.png)
 
 ### Architecture and Technologies
 
@@ -51,18 +51,18 @@ In addition to the webpack entry file, there will be one script involved in this
 
 * Familiarize myself with Chart.js and PropMiX
 
-#### Day 1: 
+#### Day 1:
 Get webpack up and running. Create `webpack.config.js` as well as `package.json.` Write a basic entry file and the bare bones
-of the scripts outline above. Learn the basics of the API and how to fetch the data. Goals for the day: 
+of the scripts outline above. Learn the basics of the API and how to fetch the data. Goals for the day:
 
 * Get `webpack` serving files and frame out index.html
 * Learn enough about the API to properly fetch data with the api key
 * Learn about `Chart.js` and start framing it out.
 
 #### Day 2:
-Build out the scripts and the chart filters to change the path in response to user input. Goals for the day: 
+Build out the scripts and the chart filters to change the path in response to user input. Goals for the day:
 
-* Finish building out the relevant scripts 
+* Finish building out the relevant scripts
 * Make the app make a new API call each time the user changes the location or date of his/her search
 
 #### Day 3:
@@ -72,8 +72,8 @@ Connect the chart filters and the chart and have the chart be responsive in real
 * Get the chart to re-render in real time every time the user changes the parameters of the query
 * Create the About modal
 
-#### Day 4: 
-Style the frontend, making it polished and professional. Goals for the day: 
+#### Day 4:
+Style the frontend, making it polished and professional. Goals for the day:
 
 * Style the initial city selection modal
 * Style the graph and filters box
