@@ -4,6 +4,33 @@ html {
   text-transform: uppercase;
 }
 
+.andrew {
+  color: red;
+  letter-spacing: 10px;
+}
+
+.about {
+  flex-direction: row;
+  margin-top: 12vh;
+  padding: 0 30vw;
+  text-align: center;
+}
+
+.about-heading {
+  color: #C1B497;
+  font-size: 30px;
+}
+
+.about-blurb {
+  color: #FFF;
+  font-size: 20px;
+  margin: 8vh 0;
+}
+
+.about-text {
+  flex-direction: column;
+}
+
 .all-analytics {
   align-content: center;
   align-items: center;
@@ -16,7 +43,7 @@ html {
 .all-analytics span {
   font-size: 30px;
   letter-spacing: 7px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .analytics-container {
@@ -25,7 +52,7 @@ html {
   display: flex;
   flex-direction: column;
   margin: 15px auto auto auto;
-  width: 65vw;
+  width: 85vw;
 }
 
 .analytics-container form {
@@ -42,6 +69,10 @@ html {
   border-top: 1px solid gray;
   margin-bottom: 20px;
   max-height: 50vh;
+}
+
+.avg-sale-price-checkbox:hover {
+  cursor: pointer;
 }
 
 .checkbox-container {
@@ -67,10 +98,12 @@ html {
   color: #C1B497;
   font-family: Futura,"Helvetica","Arial",sans-serif;
   font-size: 18px;
+  height: 57px;
   margin-top: 4vh;
   padding: 15px 40px;
   text-transform: uppercase;
   transition: 0.3s;
+  width: 153px;
 }
 
 .enter-zipcode button:hover {
@@ -161,10 +194,12 @@ html {
   font-family: Futura,"Helvetica","Arial",sans-serif;
   font-size: 14px;
   font-weight: lighter;
+  height: 35px;
   margin: auto;
   padding: 7px 30px;
   text-transform: uppercase;
   transition: 0.3s;
+  width: 131px;
 }
 
 .filters button:hover {
@@ -226,6 +261,35 @@ html {
 
 .hidden {
   display: none;
+}
+
+.loading-icon {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #25211e;
+  border-radius: 50%;
+  margin: auto;
+  width: 18px;
+  height: 18px;
+  animation: spin 2s linear infinite;
+}
+
+.loading-icon-new {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #25211e;
+  border-radius: 50%;
+  margin: auto;
+  width: 10px;
+  height: 10px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+   0% { transform: rotate(0deg); }
+   100% { transform: rotate(360deg); }
+ }
+
+.med-sale-price-checkbox:hover {
+  cursor: pointer;
 }
 
 .menu-about {
@@ -291,7 +355,7 @@ html {
   font-style: italic;
   margin: auto 5px;
   text-align: center;
-  width: 30px;
+  width: 35px;
 }
 
 .zip-error {

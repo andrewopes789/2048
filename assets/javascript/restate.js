@@ -32,10 +32,12 @@ zipSubmit.addEventListener('click', function(e) {
     zipError.innerHTML = 'Please input a valid zipcode';
   } else if (zipInput.value !== '') {
     zipError.innerHTML = null;
+    zipSubmit.innerHTML = "<div class='loading-icon'></div>";
     fetchAnalytics(zipInput.value).then( data => {
+      zipSubmit.innerHTML = "Search";
       if (data.status.msg === 'SuccessWithoutResult') {
         zipError.innerHTML =
-        'Analytics unavailable for that zipcode';
+        'Analytics unavailable for specified zipcode';
       }
         for (var i = 0; i < data.salestrends.length; i++) {
           if(data.salestrends[i].daterange.start.includes('January')) {
@@ -100,6 +102,8 @@ zipSubmit.addEventListener('click', function(e) {
             medSalePrice[11] = (data.salestrends[i].SalesTrend.medsaleprice);
           }
         }
+        updatePriceChart([], [], []);
+        updateCountChart([], []);
 
         xAxis = [].concat.apply([], xAxis);
         numOfSales = [].concat.apply([], numOfSales);
@@ -116,9 +120,13 @@ zipSubmit.addEventListener('click', function(e) {
         analyticsIdentifier.innerHTML =
         `${currYear} Analytics for ${currZip}`;
 
+        yearInput.setAttribute('value', currYear);
+        newZipInput.setAttribute('value', currZip);
+
         allAnalytics.style.display = 'flex';
         selectArea.style.display = 'none';
         header.style.display = 'flex';
+        aboutPage.style.display = 'none';
       });
     }
 });
@@ -137,19 +145,22 @@ newSearch.addEventListener('click', function(e) {
   allAnalytics.style.display = 'none';
   selectArea.style.display = 'flex';
   header.style.display = 'none';
+  aboutPage.style.display = 'none';
   zipInput.value = '';
 });
 
 let newYear = document.getElementById('newYear');
 let yearInput = document.getElementById('yearInput');
+let newZipInput = document.getElementById('newZipInput');
 
 newYear.addEventListener('click', function(e) {
   e.preventDefault();
-  if (yearInput.value < 2011 || yearInput.value > 2018) {
-    yearInput
-    .setAttribute('value', 'Please enter a year between 2011 and 2018');
-  } else if (zipInput.value !== '' && yearInput.value !== '') {
-    fetchAnalytics(zipInput.value, yearInput.value).then( data => {
+  if (parseInt(yearInput.value) < 2011 || parseInt(yearInput.value) > 2018) {
+    return;
+  } else if (newZipInput.value !== '' && yearInput.value !== '') {
+    newYear.innerHTML = "<div class='loading-icon-new'></div>";
+    fetchAnalytics(newZipInput.value, yearInput.value).then( data => {
+      newYear.innerHTML = "Visualize";
       for (var i = 0; i < data.salestrends.length; i++) {
         if(data.salestrends[i].daterange.start.includes('January')) {
           xAxis[0] = (data.salestrends[i].daterange.start);
@@ -213,6 +224,7 @@ newYear.addEventListener('click', function(e) {
           medSalePrice[11] = (data.salestrends[i].SalesTrend.medsaleprice);
         }
       }
+
       updatePriceChart([], [], []);
       updateCountChart([], []);
 
@@ -237,6 +249,7 @@ let cbAvgSalePrice = document.getElementById('cbAvgSalePrice');
 let cbMedSalePrice = document.getElementById('cbMedSalePrice');
 
 cbAvgSalePrice.addEventListener('change', () => {
+  updatePriceChart([], [], []);
   if (cbAvgSalePrice.checked && !cbMedSalePrice.checked) {
     updatePriceChart(xAxis, avgSalePrice, []);
   } else if (!cbAvgSalePrice.checked && cbMedSalePrice.checked) {
@@ -249,6 +262,7 @@ cbAvgSalePrice.addEventListener('change', () => {
 });
 
 cbMedSalePrice.addEventListener('change', () => {
+  updatePriceChart([], [], []);
   if (cbAvgSalePrice.checked && !cbMedSalePrice.checked) {
     updatePriceChart(xAxis, avgSalePrice, []);
   } else if (!cbAvgSalePrice.checked && cbMedSalePrice.checked) {
@@ -258,4 +272,14 @@ cbMedSalePrice.addEventListener('change', () => {
   } else {
     updatePriceChart(xAxis, avgSalePrice, medSalePrice);
   }
+});
+
+let about = document.getElementById('about');
+let aboutPage = document.getElementById('aboutPage');
+
+about.addEventListener('click', (e) => {
+  e.preventDefault();
+  allAnalytics.style.display = 'none';
+  selectArea.style.display = 'none';
+  aboutPage.style.display = 'flex';
 });

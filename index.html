@@ -19,7 +19,7 @@
     </div>
 
     <div class='menu-item'>
-      <span class='menu-about'>About</span>
+      <span id='about' class='menu-about'>About</span>
       <span id='newSearch'>Search a New Area</span>
     </div>
   </header>
@@ -54,6 +54,20 @@
 
       </div>
 
+      <div id='aboutPage' class='about'>
+        <div class='about-text'>
+          <div class='about-heading'>
+            Restate is a real estate analytics visualization application designed for use by first-time homebuyers and experienced property investors alike.
+          </div>
+          <div class='about-blurb'>
+            By simply entering a zip code, receive real-time analytics about the area's properties' average sale price, median sale price, and number of sales, segmented by month. Access historical trends by requesting data from a previous year.
+          </div>
+          <div class='andrew'>
+            created by Andrew Cho
+          </div>
+        </div>
+      </div>
+
       <div id="allAnalytics" class="all-analytics page">
         <div class="analytics-container">
           <div class="filters">
@@ -62,7 +76,8 @@
               <div class="filter-criteria">
                 <div class='checkbox-container'>
 
-                  <label>
+
+                  <label class='avg-sale-price-checkbox'>
                     <input
                     id='cbAvgSalePrice'
                     type="checkbox"
@@ -72,7 +87,7 @@
                     Average Sale Price
                   </label>
 
-                  <label>
+                  <label class='med-sale-price-checkbox'>
                     <input
                     id='cbMedSalePrice'
                     type="checkbox"
@@ -84,24 +99,28 @@
 
                 </div>
 
-                <label class='new-year-container'>
+                <div class='new-year-container'>
                   I would like
-                  <input
+                  <label>
+                    <input
                     id='yearInput'
                     class="year-input"
                     type="text"
                     name="year"
                     placeholder="year"
-                  />
+                    />
+                  </label>
                   analytics for
-                  <input
-                  id="newZipInput"
-                  class="new-zip-input"
-                  type="text"
-                  name="zipcode"
-                  placeholder="zipcode"
-                  >
-                </label>
+                  <label>
+                    <input
+                    id="newZipInput"
+                    class="new-zip-input"
+                    type="text"
+                    name="zipcode"
+                    placeholder="zipcode"
+                    >
+                  </label>
+                </div>
 
                 <button id='newYear'>Visualize</button>
               </div>

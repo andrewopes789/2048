@@ -10365,120 +10365,12 @@ zipSubmit.addEventListener('click', function (e) {
     zipError.innerHTML = 'Please input a valid zipcode';
   } else if (zipInput.value !== '') {
     zipError.innerHTML = null;
+    zipSubmit.innerHTML = "<div class='loading-icon'></div>";
     (0, _fetch_data.fetchAnalytics)(zipInput.value).then(function (data) {
+      zipSubmit.innerHTML = "Search";
       if (data.status.msg === 'SuccessWithoutResult') {
-        zipError.innerHTML = 'Analytics unavailable for that zipcode';
+        zipError.innerHTML = 'Analytics unavailable for specified zipcode';
       }
-      for (var i = 0; i < data.salestrends.length; i++) {
-        if (data.salestrends[i].daterange.start.includes('January')) {
-          xAxis[0] = data.salestrends[i].daterange.start;
-          numOfSales[0] = data.salestrends[i].SalesTrend.homesalecount;
-          avgSalePrice[0] = data.salestrends[i].SalesTrend.avgsaleprice;
-          medSalePrice[0] = data.salestrends[i].SalesTrend.medsaleprice;
-        } else if (data.salestrends[i].daterange.start.includes('February')) {
-          xAxis[1] = data.salestrends[i].daterange.start;
-          numOfSales[1] = data.salestrends[i].SalesTrend.homesalecount;
-          avgSalePrice[1] = data.salestrends[i].SalesTrend.avgsaleprice;
-          medSalePrice[1] = data.salestrends[i].SalesTrend.medsaleprice;
-        } else if (data.salestrends[i].daterange.start.includes('March')) {
-          xAxis[2] = data.salestrends[i].daterange.start;
-          numOfSales[2] = data.salestrends[i].SalesTrend.homesalecount;
-          avgSalePrice[2] = data.salestrends[i].SalesTrend.avgsaleprice;
-          medSalePrice[2] = data.salestrends[i].SalesTrend.medsaleprice;
-        } else if (data.salestrends[i].daterange.start.includes('April')) {
-          xAxis[3] = data.salestrends[i].daterange.start;
-          numOfSales[3] = data.salestrends[i].SalesTrend.homesalecount;
-          avgSalePrice[3] = data.salestrends[i].SalesTrend.avgsaleprice;
-          medSalePrice[3] = data.salestrends[i].SalesTrend.medsaleprice;
-        } else if (data.salestrends[i].daterange.start.includes('May')) {
-          xAxis[4] = data.salestrends[i].daterange.start;
-          numOfSales[4] = data.salestrends[i].SalesTrend.homesalecount;
-          avgSalePrice[4] = data.salestrends[i].SalesTrend.avgsaleprice;
-          medSalePrice[4] = data.salestrends[i].SalesTrend.medsaleprice;
-        } else if (data.salestrends[i].daterange.start.includes('June')) {
-          xAxis[5] = data.salestrends[i].daterange.start;
-          numOfSales[5] = data.salestrends[i].SalesTrend.homesalecount;
-          avgSalePrice[5] = data.salestrends[i].SalesTrend.avgsaleprice;
-          medSalePrice[5] = data.salestrends[i].SalesTrend.medsaleprice;
-        } else if (data.salestrends[i].daterange.start.includes('July')) {
-          xAxis[6] = data.salestrends[i].daterange.start;
-          numOfSales[6] = data.salestrends[i].SalesTrend.homesalecount;
-          avgSalePrice[6] = data.salestrends[i].SalesTrend.avgsaleprice;
-          medSalePrice[6] = data.salestrends[i].SalesTrend.medsaleprice;
-        } else if (data.salestrends[i].daterange.start.includes('August')) {
-          xAxis[7] = data.salestrends[i].daterange.start;
-          numOfSales[7] = data.salestrends[i].SalesTrend.homesalecount;
-          avgSalePrice[7] = data.salestrends[i].SalesTrend.avgsaleprice;
-          medSalePrice[7] = data.salestrends[i].SalesTrend.medsaleprice;
-        } else if (data.salestrends[i].daterange.start.includes('September')) {
-          xAxis[8] = data.salestrends[i].daterange.start;
-          numOfSales[8] = data.salestrends[i].SalesTrend.homesalecount;
-          avgSalePrice[8] = data.salestrends[i].SalesTrend.avgsaleprice;
-          medSalePrice[8] = data.salestrends[i].SalesTrend.medsaleprice;
-        } else if (data.salestrends[i].daterange.start.includes('October')) {
-          xAxis[9] = data.salestrends[i].daterange.start;
-          numOfSales[9] = data.salestrends[i].SalesTrend.homesalecount;
-          avgSalePrice[9] = data.salestrends[i].SalesTrend.avgsaleprice;
-          medSalePrice[9] = data.salestrends[i].SalesTrend.medsaleprice;
-        } else if (data.salestrends[i].daterange.start.includes('November')) {
-          xAxis[10] = data.salestrends[i].daterange.start;
-          numOfSales[10] = data.salestrends[i].SalesTrend.homesalecount;
-          avgSalePrice[10] = data.salestrends[i].SalesTrend.avgsaleprice;
-          medSalePrice[10] = data.salestrends[i].SalesTrend.medsaleprice;
-        } else if (data.salestrends[i].daterange.start.includes('December')) {
-          xAxis[11] = data.salestrends[i].daterange.start;
-          numOfSales[11] = data.salestrends[i].SalesTrend.homesalecount;
-          avgSalePrice[11] = data.salestrends[i].SalesTrend.avgsaleprice;
-          medSalePrice[11] = data.salestrends[i].SalesTrend.medsaleprice;
-        }
-      }
-
-      xAxis = [].concat.apply([], xAxis);
-      numOfSales = [].concat.apply([], numOfSales);
-      avgSalePrice = [].concat.apply([], avgSalePrice);
-      medSalePrice = [].concat.apply([], medSalePrice);
-
-      (0, _chart.updatePriceChart)(xAxis, avgSalePrice, medSalePrice);
-      (0, _chart.updateCountChart)(xAxis, numOfSales);
-
-      currZip = data.salestrends[0].location.geoID.slice(data.salestrends[0].location.geoID.length - 5);
-      currYear = xAxis[0].slice(xAxis[0].length - 5);
-
-      analyticsIdentifier.innerHTML = currYear + ' Analytics for ' + currZip;
-
-      allAnalytics.style.display = 'flex';
-      selectArea.style.display = 'none';
-      header.style.display = 'flex';
-    });
-  }
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  allAnalytics.style.display = 'none';
-  header.style.display = 'none';
-  cbAvgSalePrice.setAttribute('checked', 'true');
-  cbMedSalePrice.setAttribute('checked', 'true');
-});
-
-var newSearch = document.getElementById('newSearch');
-
-newSearch.addEventListener('click', function (e) {
-  e.preventDefault();
-  allAnalytics.style.display = 'none';
-  selectArea.style.display = 'flex';
-  header.style.display = 'none';
-  zipInput.value = '';
-});
-
-var newYear = document.getElementById('newYear');
-var yearInput = document.getElementById('yearInput');
-
-newYear.addEventListener('click', function (e) {
-  e.preventDefault();
-  if (yearInput.value < 2011 || yearInput.value > 2018) {
-    yearInput.setAttribute('value', 'Please enter a year between 2011 and 2018');
-  } else if (zipInput.value !== '' && yearInput.value !== '') {
-    (0, _fetch_data.fetchAnalytics)(zipInput.value, yearInput.value).then(function (data) {
       for (var i = 0; i < data.salestrends.length; i++) {
         if (data.salestrends[i].daterange.start.includes('January')) {
           xAxis[0] = data.salestrends[i].daterange.start;
@@ -10557,6 +10449,127 @@ newYear.addEventListener('click', function (e) {
       currYear = xAxis[0].slice(xAxis[0].length - 5);
 
       analyticsIdentifier.innerHTML = currYear + ' Analytics for ' + currZip;
+
+      yearInput.setAttribute('value', currYear);
+      newZipInput.setAttribute('value', currZip);
+
+      allAnalytics.style.display = 'flex';
+      selectArea.style.display = 'none';
+      header.style.display = 'flex';
+      aboutPage.style.display = 'none';
+    });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  allAnalytics.style.display = 'none';
+  header.style.display = 'none';
+  cbAvgSalePrice.setAttribute('checked', 'true');
+  cbMedSalePrice.setAttribute('checked', 'true');
+});
+
+var newSearch = document.getElementById('newSearch');
+
+newSearch.addEventListener('click', function (e) {
+  e.preventDefault();
+  allAnalytics.style.display = 'none';
+  selectArea.style.display = 'flex';
+  header.style.display = 'none';
+  aboutPage.style.display = 'none';
+  zipInput.value = '';
+});
+
+var newYear = document.getElementById('newYear');
+var yearInput = document.getElementById('yearInput');
+var newZipInput = document.getElementById('newZipInput');
+
+newYear.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (parseInt(yearInput.value) < 2011 || parseInt(yearInput.value) > 2018) {
+    return;
+  } else if (newZipInput.value !== '' && yearInput.value !== '') {
+    newYear.innerHTML = "<div class='loading-icon-new'></div>";
+    (0, _fetch_data.fetchAnalytics)(newZipInput.value, yearInput.value).then(function (data) {
+      newYear.innerHTML = "Visualize";
+      for (var i = 0; i < data.salestrends.length; i++) {
+        if (data.salestrends[i].daterange.start.includes('January')) {
+          xAxis[0] = data.salestrends[i].daterange.start;
+          numOfSales[0] = data.salestrends[i].SalesTrend.homesalecount;
+          avgSalePrice[0] = data.salestrends[i].SalesTrend.avgsaleprice;
+          medSalePrice[0] = data.salestrends[i].SalesTrend.medsaleprice;
+        } else if (data.salestrends[i].daterange.start.includes('February')) {
+          xAxis[1] = data.salestrends[i].daterange.start;
+          numOfSales[1] = data.salestrends[i].SalesTrend.homesalecount;
+          avgSalePrice[1] = data.salestrends[i].SalesTrend.avgsaleprice;
+          medSalePrice[1] = data.salestrends[i].SalesTrend.medsaleprice;
+        } else if (data.salestrends[i].daterange.start.includes('March')) {
+          xAxis[2] = data.salestrends[i].daterange.start;
+          numOfSales[2] = data.salestrends[i].SalesTrend.homesalecount;
+          avgSalePrice[2] = data.salestrends[i].SalesTrend.avgsaleprice;
+          medSalePrice[2] = data.salestrends[i].SalesTrend.medsaleprice;
+        } else if (data.salestrends[i].daterange.start.includes('April')) {
+          xAxis[3] = data.salestrends[i].daterange.start;
+          numOfSales[3] = data.salestrends[i].SalesTrend.homesalecount;
+          avgSalePrice[3] = data.salestrends[i].SalesTrend.avgsaleprice;
+          medSalePrice[3] = data.salestrends[i].SalesTrend.medsaleprice;
+        } else if (data.salestrends[i].daterange.start.includes('May')) {
+          xAxis[4] = data.salestrends[i].daterange.start;
+          numOfSales[4] = data.salestrends[i].SalesTrend.homesalecount;
+          avgSalePrice[4] = data.salestrends[i].SalesTrend.avgsaleprice;
+          medSalePrice[4] = data.salestrends[i].SalesTrend.medsaleprice;
+        } else if (data.salestrends[i].daterange.start.includes('June')) {
+          xAxis[5] = data.salestrends[i].daterange.start;
+          numOfSales[5] = data.salestrends[i].SalesTrend.homesalecount;
+          avgSalePrice[5] = data.salestrends[i].SalesTrend.avgsaleprice;
+          medSalePrice[5] = data.salestrends[i].SalesTrend.medsaleprice;
+        } else if (data.salestrends[i].daterange.start.includes('July')) {
+          xAxis[6] = data.salestrends[i].daterange.start;
+          numOfSales[6] = data.salestrends[i].SalesTrend.homesalecount;
+          avgSalePrice[6] = data.salestrends[i].SalesTrend.avgsaleprice;
+          medSalePrice[6] = data.salestrends[i].SalesTrend.medsaleprice;
+        } else if (data.salestrends[i].daterange.start.includes('August')) {
+          xAxis[7] = data.salestrends[i].daterange.start;
+          numOfSales[7] = data.salestrends[i].SalesTrend.homesalecount;
+          avgSalePrice[7] = data.salestrends[i].SalesTrend.avgsaleprice;
+          medSalePrice[7] = data.salestrends[i].SalesTrend.medsaleprice;
+        } else if (data.salestrends[i].daterange.start.includes('September')) {
+          xAxis[8] = data.salestrends[i].daterange.start;
+          numOfSales[8] = data.salestrends[i].SalesTrend.homesalecount;
+          avgSalePrice[8] = data.salestrends[i].SalesTrend.avgsaleprice;
+          medSalePrice[8] = data.salestrends[i].SalesTrend.medsaleprice;
+        } else if (data.salestrends[i].daterange.start.includes('October')) {
+          xAxis[9] = data.salestrends[i].daterange.start;
+          numOfSales[9] = data.salestrends[i].SalesTrend.homesalecount;
+          avgSalePrice[9] = data.salestrends[i].SalesTrend.avgsaleprice;
+          medSalePrice[9] = data.salestrends[i].SalesTrend.medsaleprice;
+        } else if (data.salestrends[i].daterange.start.includes('November')) {
+          xAxis[10] = data.salestrends[i].daterange.start;
+          numOfSales[10] = data.salestrends[i].SalesTrend.homesalecount;
+          avgSalePrice[10] = data.salestrends[i].SalesTrend.avgsaleprice;
+          medSalePrice[10] = data.salestrends[i].SalesTrend.medsaleprice;
+        } else if (data.salestrends[i].daterange.start.includes('December')) {
+          xAxis[11] = data.salestrends[i].daterange.start;
+          numOfSales[11] = data.salestrends[i].SalesTrend.homesalecount;
+          avgSalePrice[11] = data.salestrends[i].SalesTrend.avgsaleprice;
+          medSalePrice[11] = data.salestrends[i].SalesTrend.medsaleprice;
+        }
+      }
+
+      (0, _chart.updatePriceChart)([], [], []);
+      (0, _chart.updateCountChart)([], []);
+
+      xAxis = [].concat.apply([], xAxis);
+      numOfSales = [].concat.apply([], numOfSales);
+      avgSalePrice = [].concat.apply([], avgSalePrice);
+      medSalePrice = [].concat.apply([], medSalePrice);
+
+      (0, _chart.updatePriceChart)(xAxis, avgSalePrice, medSalePrice);
+      (0, _chart.updateCountChart)(xAxis, numOfSales);
+
+      currZip = data.salestrends[0].location.geoID.slice(data.salestrends[0].location.geoID.length - 5);
+      currYear = xAxis[0].slice(xAxis[0].length - 5);
+
+      analyticsIdentifier.innerHTML = currYear + ' Analytics for ' + currZip;
     });
   }
 });
@@ -10565,6 +10578,7 @@ var cbAvgSalePrice = document.getElementById('cbAvgSalePrice');
 var cbMedSalePrice = document.getElementById('cbMedSalePrice');
 
 cbAvgSalePrice.addEventListener('change', function () {
+  (0, _chart.updatePriceChart)([], [], []);
   if (cbAvgSalePrice.checked && !cbMedSalePrice.checked) {
     (0, _chart.updatePriceChart)(xAxis, avgSalePrice, []);
   } else if (!cbAvgSalePrice.checked && cbMedSalePrice.checked) {
@@ -10577,6 +10591,7 @@ cbAvgSalePrice.addEventListener('change', function () {
 });
 
 cbMedSalePrice.addEventListener('change', function () {
+  (0, _chart.updatePriceChart)([], [], []);
   if (cbAvgSalePrice.checked && !cbMedSalePrice.checked) {
     (0, _chart.updatePriceChart)(xAxis, avgSalePrice, []);
   } else if (!cbAvgSalePrice.checked && cbMedSalePrice.checked) {
@@ -10586,6 +10601,16 @@ cbMedSalePrice.addEventListener('change', function () {
   } else {
     (0, _chart.updatePriceChart)(xAxis, avgSalePrice, medSalePrice);
   }
+});
+
+var about = document.getElementById('about');
+var aboutPage = document.getElementById('aboutPage');
+
+about.addEventListener('click', function (e) {
+  e.preventDefault();
+  allAnalytics.style.display = 'none';
+  selectArea.style.display = 'none';
+  aboutPage.style.display = 'flex';
 });
 
 /***/ }),
