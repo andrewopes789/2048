@@ -20,6 +20,9 @@ let zipError = document.getElementById('zipError');
 let analyticsLineChart = document.getElementById('analyticsLineChart');
 let salesCountChart = document.getElementById('salesCountChart');
 
+let analyticsContainer = document.getElementById('analyticsContainer');
+let salesCountContainer = document.getElementById('salesCountContainer');
+
 let numOfSales = [[], [], [], [], [], [], [], [], [], [], []];
 let avgSalePrice = [[], [], [], [], [], [], [], [], [], [], []];
 let medSalePrice = [[], [], [], [], [], [], [], [], [], [], []];
@@ -328,7 +331,10 @@ let cbAvgSalePrice = document.getElementById('cbAvgSalePrice');
 let cbMedSalePrice = document.getElementById('cbMedSalePrice');
 
 cbAvgSalePrice.addEventListener('change', () => {
-  updatePriceChart([], [], []);
+  analyticsLineChart.innerHTML = null;
+
+  analyticsLineChart.innerHTML =
+  "<canvas class='analytics-line-chart' id='analyticsLineChart'></canvas>";
 
   if (cbAvgSalePrice.checked && !cbMedSalePrice.checked) {
 
@@ -350,7 +356,10 @@ cbAvgSalePrice.addEventListener('change', () => {
 });
 
 cbMedSalePrice.addEventListener('change', () => {
-  updatePriceChart([], [], []);
+  analyticsLineChart.innerHTML = null;
+
+  analyticsLineChart.innerHTML =
+  "<canvas class='analytics-line-chart' id='analyticsLineChart'></canvas>";
 
   if (cbAvgSalePrice.checked && !cbMedSalePrice.checked) {
 
@@ -367,7 +376,7 @@ cbMedSalePrice.addEventListener('change', () => {
   } else {
 
     updatePriceChart(xAxis, avgSalePrice, medSalePrice);
-    
+
   }
 });
 

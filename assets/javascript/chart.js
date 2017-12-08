@@ -1,8 +1,14 @@
-const pricesChart = document.getElementById('analyticsLineChart');
+const analyticsLineChart = document.getElementById('analyticsLineChart');
 const salesCountChart = document.getElementById('salesCountChart');
 
+let pricesChart;
+let countChart;
+
 export const updatePriceChart = (xAxis, avgSalePrice, medSalePrice) => {
-  new Chart(pricesChart, {
+  if (pricesChart) {
+    pricesChart.clear();
+  }
+  pricesChart = new Chart(analyticsLineChart, {
     type: 'line',
     data: {
           labels: xAxis,
@@ -69,7 +75,10 @@ export const updatePriceChart = (xAxis, avgSalePrice, medSalePrice) => {
 };
 
 export const updateCountChart = (xAxis, numOfSales) => {
-  new Chart(salesCountChart, {
+  if (countChart) {
+    countChart.clear();
+  }
+  countChart = new Chart(salesCountChart, {
     type: 'line',
     data: {
           labels: xAxis,

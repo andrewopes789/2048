@@ -10354,6 +10354,9 @@ var zipError = document.getElementById('zipError');
 var analyticsLineChart = document.getElementById('analyticsLineChart');
 var salesCountChart = document.getElementById('salesCountChart');
 
+var analyticsContainer = document.getElementById('analyticsContainer');
+var salesCountContainer = document.getElementById('salesCountContainer');
+
 var numOfSales = [[], [], [], [], [], [], [], [], [], [], []];
 var avgSalePrice = [[], [], [], [], [], [], [], [], [], [], []];
 var medSalePrice = [[], [], [], [], [], [], [], [], [], [], []];
@@ -10630,7 +10633,9 @@ var cbAvgSalePrice = document.getElementById('cbAvgSalePrice');
 var cbMedSalePrice = document.getElementById('cbMedSalePrice');
 
 cbAvgSalePrice.addEventListener('change', function () {
-  (0, _chart.updatePriceChart)([], [], []);
+  analyticsLineChart.innerHTML = null;
+
+  analyticsLineChart.innerHTML = "<canvas class='analytics-line-chart' id='analyticsLineChart'></canvas>";
 
   if (cbAvgSalePrice.checked && !cbMedSalePrice.checked) {
 
@@ -10648,7 +10653,9 @@ cbAvgSalePrice.addEventListener('change', function () {
 });
 
 cbMedSalePrice.addEventListener('change', function () {
-  (0, _chart.updatePriceChart)([], [], []);
+  analyticsLineChart.innerHTML = null;
+
+  analyticsLineChart.innerHTML = "<canvas class='analytics-line-chart' id='analyticsLineChart'></canvas>";
 
   if (cbAvgSalePrice.checked && !cbMedSalePrice.checked) {
 
@@ -10726,11 +10733,17 @@ var fetchAnalytics = exports.fetchAnalytics = function fetchAnalytics(zipCode) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var pricesChart = document.getElementById('analyticsLineChart');
+var analyticsLineChart = document.getElementById('analyticsLineChart');
 var salesCountChart = document.getElementById('salesCountChart');
 
+var pricesChart = void 0;
+var countChart = void 0;
+
 var updatePriceChart = exports.updatePriceChart = function updatePriceChart(xAxis, avgSalePrice, medSalePrice) {
-    new Chart(pricesChart, {
+    if (pricesChart) {
+        pricesChart.clear();
+    }
+    pricesChart = new Chart(analyticsLineChart, {
         type: 'line',
         data: {
             labels: xAxis,
@@ -10789,7 +10802,10 @@ var updatePriceChart = exports.updatePriceChart = function updatePriceChart(xAxi
 };
 
 var updateCountChart = exports.updateCountChart = function updateCountChart(xAxis, numOfSales) {
-    new Chart(salesCountChart, {
+    if (countChart) {
+        countChart.clear();
+    }
+    countChart = new Chart(salesCountChart, {
         type: 'line',
         data: {
             labels: xAxis,
