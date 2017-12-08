@@ -10464,6 +10464,7 @@ zipSubmit.addEventListener('click', function (e) {
 document.addEventListener('DOMContentLoaded', function () {
   allAnalytics.style.display = 'none';
   header.style.display = 'none';
+  aboutPage.style.display = 'none';
   cbAvgSalePrice.setAttribute('checked', 'true');
   cbMedSalePrice.setAttribute('checked', 'true');
 });
@@ -10608,6 +10609,17 @@ var aboutPage = document.getElementById('aboutPage');
 
 about.addEventListener('click', function (e) {
   e.preventDefault();
+  header.style.display = 'flex';
+  allAnalytics.style.display = 'none';
+  selectArea.style.display = 'none';
+  aboutPage.style.display = 'flex';
+});
+
+var searchAbout = document.getElementById('searchAbout');
+
+searchAbout.addEventListener('click', function (e) {
+  e.preventDefault();
+  header.style.display = 'flex';
   allAnalytics.style.display = 'none';
   selectArea.style.display = 'none';
   aboutPage.style.display = 'flex';
