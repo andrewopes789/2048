@@ -1,6 +1,6 @@
 ## Restate - A real estate market analysis application
 
-[Live Link](https://andrewopes789.github.io/restate/)
+[Restate Live](https://andrewopes789.github.io/restate/)
 
 ### Background and Overview
 
