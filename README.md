@@ -37,7 +37,7 @@ This project will be implemented with the following technologies:
 
 * Vanilla JavaScript for overall structure,
 * `Chart.js` for the graph render,
-* `PropMiX API` for real-time real estate analytics,
+* `Onboard API` for real-time real estate analytics,
 * Webpack to bundle and serve up the various scripts.
 
 In addition to the webpack entry file, there will be one script involved in this project:
@@ -49,7 +49,7 @@ In addition to the webpack entry file, there will be one script involved in this
 
 #### Over the weekend:
 
-* Familiarize myself with Chart.js and PropMiX
+* Familiarize myself with Chart.js and Onboard API
 
 #### Day 1:
 Get webpack up and running. Create `webpack.config.js` as well as `package.json.` Write a basic entry file and the bare bones
