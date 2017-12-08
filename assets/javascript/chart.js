@@ -7,49 +7,63 @@ export const updatePriceChart = (xAxis, avgSalePrice, medSalePrice) => {
     data: {
           labels: xAxis,
           datasets: [{
-              label: 'Average Sale Price',
+              label: 'AVERAGE SALE PRICE',
               fill: false,
               data: avgSalePrice,
               backgroundColor: [
-                  'rgba(102, 153, 255, 0.2)'
+                  'rgba(102, 153, 255, 0.6)'
               ],
               borderColor: [
                   'rgba(102, 153, 255, 1)'
               ],
-              borderWidth: 2,
-              pointHoverBackgroundColor: [
-                'rgba(0, 0, 204, 0.2)'
-              ],
-              pointHoverBorderColor: [
-                'rgba(0, 0, 204, 1)'
-              ]
+              borderWidth: 5,
+              pointHoverRadius: 8,
+              pointHoverBackgroundColor: '#e7e7e7',
+              pointHoverBorderColor: '#C1B497'
           }, {
-              label: 'Median Sale Price',
+              label: 'MEDIAN SALE PRICE',
               fill: false,
               data: medSalePrice,
               backgroundColor: [
-                  'rgba(255, 0, 0, 0.2)'
+                  'rgba(255, 0, 0, 0.6)'
               ],
               borderColor: [
                   'rgba(255, 0, 0, 1)'
               ],
-              borderWidth: 2,
-              pointHoverBackgroundColor: [
-                'rgba(128, 0, 0, 0.2)'
-              ],
-              pointHoverBorderColor: [
-                'rgba(128, 0, 0, 1)'
-              ]
+              borderWidth: 5,
+              pointHoverRadius: 8,
+              pointHoverBackgroundColor: '#e7e7e7',
+              pointHoverBorderColor: '#C1B497'
           }]
       },
       options: {
+          legend: {
+              labels: {
+                  fontColor: '#fff',
+                  fontSize: 14
+              }
+          },
           scales: {
               yAxes: [{
+                  gridLines: {
+                    color: 'gray'
+                  },
                   ticks: {
-                      beginAtZero:false
+                    fontColor: '#fff',
+                    fontFamily: 'Futura,"Helvetica","Arial",sans-serif',
+                    fontSize: 14,
+                    padding: 5
                   }
+              }],
+              xAxes: [{
+                ticks: {
+                  fontColor: '#fff',
+                  fontFamily: 'Futura,"Helvetica","Arial",sans-serif',
+                  fontSize: 14,
+                  padding: 5
+                }
               }]
-          }
+          },
       }
   });
 };
@@ -60,32 +74,50 @@ export const updateCountChart = (xAxis, numOfSales) => {
     data: {
           labels: xAxis,
           datasets: [{
-              label: 'Number of Sales',
+              label: 'NUMBER OF SALES',
               fill: false,
               data: numOfSales,
               backgroundColor: [
-                  'rgba(51, 204, 51, 0.2)'
+                  'rgba(51, 204, 51, 0.6)'
               ],
               borderColor: [
                   'rgba(51, 204, 51, 1)'
               ],
-              borderWidth: 2,
-              pointHoverBackgroundColor: [
-                'rgba(51, 153, 102, 0.2)'
-              ],
-              pointHoverBorderColor: [
-                'rgba(51, 153, 102, 1)'
-              ]
+              borderWidth: 5,
+              pointHoverRadius: 8,
+              pointHoverBackgroundColor: '#e7e7e7',
+              pointHoverBorderColor: '#C1B497'
           }]
       },
       options: {
+          legend: {
+              labels: {
+                  fontColor: '#fff',
+                  fontSize: 14
+              }
+          },
           scales: {
               yAxes: [{
+                  gridLines: {
+                    color: 'gray'
+                  },
                   ticks: {
-                      beginAtZero:false
+                    fontColor: '#fff',
+                    fontFamily: 'Futura,"Helvetica","Arial",sans-serif',
+                    fontSize: 14,
+                    padding: 5
                   }
+              }],
+              xAxes: [{
+                ticks: {
+                  fontColor: '#fff',
+                  fontFamily: 'Futura,"Helvetica","Arial",sans-serif',
+                  fontSize: 14,
+                  padding: 5
+                }
               }]
-          }
+          },
+
       }
   });
 };

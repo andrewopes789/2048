@@ -27,11 +27,16 @@ let currZip;
 
 zipSubmit.addEventListener('click', function(e) {
   e.preventDefault();
-  if (parseInt(zipInput.value) < 9999) {
+  if (!(parseInt(zipInput.value) > 9999 &&
+        parseInt(zipInput.value) < 99999)) {
     zipError.innerHTML = 'Please input a valid zipcode';
   } else if (zipInput.value !== '') {
     zipError.innerHTML = null;
     fetchAnalytics(zipInput.value).then( data => {
+      if (data.status.msg === 'SuccessWithoutResult') {
+        zipError.innerHTML =
+        'Analytics unavailable for that zipcode';
+      }
         for (var i = 0; i < data.salestrends.length; i++) {
           if(data.salestrends[i].daterange.start.includes('January')) {
             xAxis[0] = (data.salestrends[i].daterange.start);
@@ -109,7 +114,7 @@ zipSubmit.addEventListener('click', function(e) {
         currYear = xAxis[0].slice(xAxis[0].length-5);
 
         analyticsIdentifier.innerHTML =
-        `Analytics for ${currZip} in ${currYear}`;
+        `${currYear} Analytics for ${currZip}`;
 
         allAnalytics.style.display = 'flex';
         selectArea.style.display = 'none';
@@ -132,6 +137,7 @@ newSearch.addEventListener('click', function(e) {
   allAnalytics.style.display = 'none';
   selectArea.style.display = 'flex';
   header.style.display = 'none';
+  zipInput.value = '';
 });
 
 let newYear = document.getElementById('newYear');
@@ -223,7 +229,7 @@ newYear.addEventListener('click', function(e) {
       currYear = xAxis[0].slice(xAxis[0].length-5);
 
       analyticsIdentifier.innerHTML =
-      `Analytics for ${currZip} in ${currYear}`;
+      `${currYear} Analytics for ${currZip}`;
     });
 }});
 

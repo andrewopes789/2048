@@ -1,5 +1,7 @@
 html {
-  background-color: #696969;
+  background-color: #25211e;
+  font-family: Futura,"Helvetica","Arial",sans-serif;
+  text-transform: uppercase;
 }
 
 .all-analytics {
@@ -11,13 +13,19 @@ html {
   width: 100vw;
 }
 
+.all-analytics span {
+  font-size: 30px;
+  letter-spacing: 7px;
+  margin-bottom: 15px;
+}
+
 .analytics-container {
   align-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 30px auto auto auto;
-  width: 80vw;
+  margin: 15px auto auto auto;
+  width: 65vw;
 }
 
 .analytics-container form {
@@ -26,19 +34,17 @@ html {
 }
 
 .analytics-graph {
-  width: 100%;
+  width: 80%;
 }
 
 .analytics-line-chart {
-  background-color: white;
-  border-radius: 10px;
+  background-color: #25211e;
+  border-top: 1px solid gray;
   margin-bottom: 20px;
   max-height: 50vh;
-  opacity: 0.9;
 }
 
 .checkbox-container {
-  margin-right: 20px;
 }
 
 .checkbox-container label {
@@ -46,7 +52,6 @@ html {
 }
 
 .enter-zipcode {
-  border: 1px solid white;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -56,16 +61,21 @@ html {
 }
 
 .enter-zipcode button {
+  background-color: #25211e;
+  border: 1px solid #C1B497;
   border-radius: 8px;
-  color: gray;
-  font-family: Palantino;
+  color: #C1B497;
+  font-family: Futura,"Helvetica","Arial",sans-serif;
   font-size: 18px;
-  font-style: italic;
   margin-top: 4vh;
-  padding: 4px 15px;
+  padding: 15px 40px;
+  text-transform: uppercase;
+  transition: 0.3s;
 }
 
 .enter-zipcode button:hover {
+  background-color: #C1B497;
+  color: #25211e;
   cursor: pointer;
 }
 
@@ -78,31 +88,35 @@ html {
 .enter-zipcode h2 {
   align-content: center;
   align-items: center;
-  color: white;
+  color: #C1B497;
   display: block;
-  font-family: Palantino;
-  font-size: 150px;
+  font-family: Futura,"Helvetica","Arial",sans-serif;
+  font-size: 80px;
   font-weight: 100;
+  letter-spacing: 5px;
   margin: 0;
+  text-transform: uppercase;
 }
 
 .enter-zipcode h3 {
-  color: white;
+  color: #fff;
   display: block;
-  font-family: Palantino;
-  font-size: 33px;
-  font-style: italic;
+  font-family: Futura,"Helvetica","Arial",sans-serif;
+  font-size: 20px;
   font-weight: 100;
-  margin-top: 0;
+  letter-spacing: 5px;
   padding-bottom: 20px;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .enter-zipcode input {
+  background-color: #c4c4c4;
+  border: 1px solid #C1B497;
   border-radius: 10px;
-  font-family: Palantino;
+  font-family: Futura,"Helvetica","Arial",sans-serif;
   font-size: 16px;
-  padding: 12px 6px;
+  padding: 12px 10px;
   width: 97.5%;
 }
 
@@ -117,6 +131,7 @@ html {
 }
 
 .filter-criteria label {
+  font-size: 12px;
   padding-bottom: 6px;
   padding-top: 7px;
 }
@@ -126,8 +141,8 @@ html {
   font-size: 15px;
   font-style: italic;
   font-weight: 100;
-  margin-right: 30px;
-  padding-right: 30px;
+  margin-right: 1%;
+  padding-right: 1%;
 }
 
 .filters {
@@ -135,71 +150,91 @@ html {
   border: 1px solid white;
   border-radius: 10px;
   margin-bottom: 30px;
-  padding: 1% 2.5%;
+  padding: 1%;
 }
 
 .filters button {
-  background-color: gray;
+  background-color: #25211E;
+  border: 1px solid #C1B497;
   border-radius: 5px;
-  color: white;
-  font-family: Palantino;
+  color: #C1B497;
+  font-family: Futura,"Helvetica","Arial",sans-serif;
   font-size: 14px;
-  font-style: italic;
   font-weight: lighter;
   margin: auto;
   padding: 7px 30px;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+.filters button:hover {
+  background-color: #C1B497;
+  color: #25211e;
+  cursor: pointer;
 }
 
 .header {
-  border-bottom: 0.1px solid white;
-  flex-direction: row;
+  background-color: #25211e;
+  flex-direction: column;
+  text-align: center;
   width: 100%;
 }
 
 .header span {
   color: white;
-  display: block;
-  font-family: Palantino;
-  font-size: 18px;
-  font-style: italic;
+  font-size: 13px;
   font-weight: 100;
   height: 100%;
-  margin: auto 2vw auto auto;
+  letter-spacing: 5px;
+  margin: auto 20px;
   text-align: center;
+  transition: 0.3s;
 }
 
-.header span:hover {
+.header span:hover,
+.header span:focus {
   color: red;
   cursor: pointer;
-  transition: 0.2;
 }
 
 .header-text {
   display: flex;
   flex-direction: column;
-  margin: 2vh 2vw;
+  margin: 10px 2vw;
 }
 
 .header-text h2 {
-  color: white;
+  color: #C1B497;
   display: block;
-  font-family: Palantino;
-  font-size: 40px;
+  font-family: Futura,"Helvetica","Arial",sans-serif;
+  font-size: 45px;
   font-weight: 100;
+  letter-spacing: 5px;
   margin: 0;
+  text-transform: uppercase;
 }
 
 .header-text h3 {
   color: white;
   display: block;
+  font-family: Futura,"Helvetica","Arial",sans-serif;
   font-size: 18px;
-  font-style: italic;
   font-weight: 100;
-  margin: 0 0 2vh 0;
+  letter-spacing: 5px;
+  margin: 3px 0 2vh 0;
 }
 
 .hidden {
   display: none;
+}
+
+.menu-about {
+  letter-spacing: 5px;
+}
+
+.menu-item {
+  flex-direction: row;
+  margin-bottom: 20px;
 }
 
 .new-year {
@@ -212,8 +247,8 @@ html {
 
 .new-year-container {
   border-left: 1px solid white;
-  margin-right: 20px;
-  padding-left: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
   text-align: center;
 }
 
@@ -221,18 +256,26 @@ html {
   cursor: pointer;
 }
 
+.new-zip-input {
+  border-radius: 5px;
+  font-family: Palantino;
+  font-size: 13px;
+  font-style: italic;
+  margin: auto 5px;
+  text-align: center;
+  width: 50px;
+}
+
 .sales-count-chart {
-  background-color: white;
-  border-radius: 10px;
+  background-color: #25211e;
+  border-top: 1px solid gray;
   margin-top: 30px;
   max-height: 50vh;
-  opacity: 0.9;
 }
 
 .select-area {
   align-content: center;
   align-items: center;
-  background-color: #696969;
   display: flex;
   flex-direction: row;
   height: 100vh;
@@ -246,19 +289,21 @@ html {
   font-family: Palantino;
   font-size: 13px;
   font-style: italic;
-  margin: auto;
-  padding: 7px 5px;
+  margin: auto 5px;
   text-align: center;
-  width: 350px;
+  width: 30px;
 }
 
 .zip-error {
   color: red;
-  font-family: Palantino;
-  font-size: 16px;
-  font-style: italic;
+  font-family: Futura,"Helvetica","Arial",sans-serif;
+  font-size: 15px;
+  font-weight: 100;
+  height: 20px;
+  letter-spacing: 5px;
   margin-top: 5vh;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .zip-input {
