@@ -8,15 +8,9 @@ market in the areas they are interested in purchasing a property.
 Users enter an initial zip code for which they would like market information, and then for the selected area, the application will map the 
 following analytics versus time:
 
-* Median Price of New Listings
+* Average Price of All Listings
 * Median Price of All Listings
-* Median Price of All Pending Listings
-* Count of New Listings
 * Count of Sold Listings
-* Median List Price per Square Foot
-* Median Sold Price per Square Foot
-* Average Sold Price versus List Price Ratio
-* Average Days on the Market
 
 ### Functionality & MVP
 
