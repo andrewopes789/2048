@@ -10351,6 +10351,9 @@ var analyticsIdentifier = document.getElementById('analytics-identifier');
 
 var zipError = document.getElementById('zipError');
 
+var analyticsLineChart = document.getElementById('analyticsLineChart');
+var salesCountChart = document.getElementById('salesCountChart');
+
 var numOfSales = [[], [], [], [], [], [], [], [], [], [], []];
 var avgSalePrice = [[], [], [], [], [], [], [], [], [], [], []];
 var medSalePrice = [[], [], [], [], [], [], [], [], [], [], []];
@@ -10361,79 +10364,105 @@ var currZip = void 0;
 
 zipSubmit.addEventListener('click', function (e) {
   e.preventDefault();
+
   if (!(parseInt(zipInput.value) > 9999 && parseInt(zipInput.value) < 99999)) {
+
     zipError.innerHTML = 'Please input a valid zipcode';
   } else if (zipInput.value !== '') {
+
     zipError.innerHTML = null;
     zipSubmit.innerHTML = "<div class='loading-icon'></div>";
+
     (0, _fetch_data.fetchAnalytics)(zipInput.value).then(function (data) {
+
       zipSubmit.innerHTML = "Search";
+
       if (data.status.msg === 'SuccessWithoutResult') {
+
         zipError.innerHTML = 'Analytics unavailable for specified zipcode';
       }
+
+      numOfSales = [[], [], [], [], [], [], [], [], [], [], []];
+      avgSalePrice = [[], [], [], [], [], [], [], [], [], [], []];
+      medSalePrice = [[], [], [], [], [], [], [], [], [], [], []];
+      xAxis = [[], [], [], [], [], [], [], [], [], [], []];
+
       for (var i = 0; i < data.salestrends.length; i++) {
         if (data.salestrends[i].daterange.start.includes('January')) {
+
           xAxis[0] = data.salestrends[i].daterange.start;
           numOfSales[0] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[0] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[0] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('February')) {
+
           xAxis[1] = data.salestrends[i].daterange.start;
           numOfSales[1] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[1] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[1] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('March')) {
+
           xAxis[2] = data.salestrends[i].daterange.start;
           numOfSales[2] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[2] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[2] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('April')) {
+
           xAxis[3] = data.salestrends[i].daterange.start;
           numOfSales[3] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[3] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[3] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('May')) {
+
           xAxis[4] = data.salestrends[i].daterange.start;
           numOfSales[4] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[4] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[4] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('June')) {
+
           xAxis[5] = data.salestrends[i].daterange.start;
           numOfSales[5] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[5] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[5] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('July')) {
+
           xAxis[6] = data.salestrends[i].daterange.start;
           numOfSales[6] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[6] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[6] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('August')) {
+
           xAxis[7] = data.salestrends[i].daterange.start;
           numOfSales[7] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[7] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[7] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('September')) {
+
           xAxis[8] = data.salestrends[i].daterange.start;
           numOfSales[8] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[8] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[8] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('October')) {
+
           xAxis[9] = data.salestrends[i].daterange.start;
           numOfSales[9] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[9] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[9] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('November')) {
+
           xAxis[10] = data.salestrends[i].daterange.start;
           numOfSales[10] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[10] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[10] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('December')) {
+
           xAxis[11] = data.salestrends[i].daterange.start;
           numOfSales[11] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[11] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[11] = data.salestrends[i].SalesTrend.medsaleprice;
         }
       }
+
       (0, _chart.updatePriceChart)([], [], []);
       (0, _chart.updateCountChart)([], []);
 
@@ -10486,69 +10515,91 @@ var newZipInput = document.getElementById('newZipInput');
 
 newYear.addEventListener('click', function (e) {
   e.preventDefault();
+
   if (parseInt(yearInput.value) < 2011 || parseInt(yearInput.value) > 2018) {
+
     return;
   } else if (newZipInput.value !== '' && yearInput.value !== '') {
+
     newYear.innerHTML = "<div class='loading-icon-new'></div>";
+
     (0, _fetch_data.fetchAnalytics)(newZipInput.value, yearInput.value).then(function (data) {
       newYear.innerHTML = "Visualize";
+
+      numOfSales = [[], [], [], [], [], [], [], [], [], [], []];
+      avgSalePrice = [[], [], [], [], [], [], [], [], [], [], []];
+      medSalePrice = [[], [], [], [], [], [], [], [], [], [], []];
+      xAxis = [[], [], [], [], [], [], [], [], [], [], []];
+
       for (var i = 0; i < data.salestrends.length; i++) {
+
         if (data.salestrends[i].daterange.start.includes('January')) {
           xAxis[0] = data.salestrends[i].daterange.start;
           numOfSales[0] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[0] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[0] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('February')) {
+
           xAxis[1] = data.salestrends[i].daterange.start;
           numOfSales[1] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[1] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[1] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('March')) {
+
           xAxis[2] = data.salestrends[i].daterange.start;
           numOfSales[2] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[2] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[2] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('April')) {
+
           xAxis[3] = data.salestrends[i].daterange.start;
           numOfSales[3] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[3] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[3] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('May')) {
+
           xAxis[4] = data.salestrends[i].daterange.start;
           numOfSales[4] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[4] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[4] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('June')) {
+
           xAxis[5] = data.salestrends[i].daterange.start;
           numOfSales[5] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[5] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[5] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('July')) {
+
           xAxis[6] = data.salestrends[i].daterange.start;
           numOfSales[6] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[6] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[6] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('August')) {
+
           xAxis[7] = data.salestrends[i].daterange.start;
           numOfSales[7] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[7] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[7] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('September')) {
+
           xAxis[8] = data.salestrends[i].daterange.start;
           numOfSales[8] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[8] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[8] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('October')) {
+
           xAxis[9] = data.salestrends[i].daterange.start;
           numOfSales[9] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[9] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[9] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('November')) {
+
           xAxis[10] = data.salestrends[i].daterange.start;
           numOfSales[10] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[10] = data.salestrends[i].SalesTrend.avgsaleprice;
           medSalePrice[10] = data.salestrends[i].SalesTrend.medsaleprice;
         } else if (data.salestrends[i].daterange.start.includes('December')) {
+
           xAxis[11] = data.salestrends[i].daterange.start;
           numOfSales[11] = data.salestrends[i].SalesTrend.homesalecount;
           avgSalePrice[11] = data.salestrends[i].SalesTrend.avgsaleprice;
@@ -10580,26 +10631,36 @@ var cbMedSalePrice = document.getElementById('cbMedSalePrice');
 
 cbAvgSalePrice.addEventListener('change', function () {
   (0, _chart.updatePriceChart)([], [], []);
+
   if (cbAvgSalePrice.checked && !cbMedSalePrice.checked) {
+
     (0, _chart.updatePriceChart)(xAxis, avgSalePrice, []);
   } else if (!cbAvgSalePrice.checked && cbMedSalePrice.checked) {
+
     (0, _chart.updatePriceChart)(xAxis, [], medSalePrice);
   } else if (!cbAvgSalePrice.checked && !cbMedSalePrice.checked) {
+
     (0, _chart.updatePriceChart)(xAxis, [], []);
   } else {
+
     (0, _chart.updatePriceChart)(xAxis, avgSalePrice, medSalePrice);
   }
 });
 
 cbMedSalePrice.addEventListener('change', function () {
   (0, _chart.updatePriceChart)([], [], []);
+
   if (cbAvgSalePrice.checked && !cbMedSalePrice.checked) {
+
     (0, _chart.updatePriceChart)(xAxis, avgSalePrice, []);
   } else if (!cbAvgSalePrice.checked && cbMedSalePrice.checked) {
+
     (0, _chart.updatePriceChart)(xAxis, [], medSalePrice);
   } else if (!cbAvgSalePrice.checked && !cbMedSalePrice.checked) {
+
     (0, _chart.updatePriceChart)(xAxis, [], []);
   } else {
+
     (0, _chart.updatePriceChart)(xAxis, avgSalePrice, medSalePrice);
   }
 });
