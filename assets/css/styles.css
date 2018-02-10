@@ -362,10 +362,12 @@ html {
 .select-area {
   align-content: center;
   align-items: center;
+  background-image: url(http://res.cloudinary.com/dn26kjpum/image/upload/v1518302456/newyork_hffzdu.jpg);
   display: flex;
   flex-direction: column;
   height: 100vh;
   justify-content: center;
+  /* opacity: 0.2; */
   padding: auto;
   width: 100vw;
 }
