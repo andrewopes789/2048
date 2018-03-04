@@ -225,11 +225,6 @@ html {
   transition: 0.2s;
 }
 
-.footer:hover {
-  color: red;
-  cursor: pointer;
-}
-
 .header {
   background-color: #25211e;
   flex-direction: column;
@@ -315,7 +310,15 @@ html {
 }
 
 .menu-about {
+  color: white;
   letter-spacing: 5px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.menu-about:hover {
+  color: red;
+  cursor: pointer;
 }
 
 .menu-item {
